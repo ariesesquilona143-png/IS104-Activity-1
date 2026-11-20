@@ -27,7 +27,7 @@
         <div class="panel-heading"><h2>Student information</h2><p>Fields marked with an asterisk are required.</p></div>
         <label>Student ID <em>*</em><input name="studentId" placeholder="e.g. 2026-006" required></label>
         <label>Full name <em>*</em><input name="fullName" placeholder="Enter student's full name" required></label>
-        <label>Email address <em>*</em><input name="email" type="email" placeholder="student@example.com" required></label>
+        <label>Email address <em>*</em><input name="email" type="email" value="niencyjoyriva@gmail.com" required></label>
         <label>Age <em>*</em><input name="age" type="number" min="16" max="100" placeholder="Enter age" required></label>
         <label>Course <em>*</em><select name="course" required><option value="">Select a course</option><option>BSIT</option><option>BSCS</option><option>BSBA</option><option>BSHM</option></select></label>
         <label>Year level <em>*</em><select name="yearLevel" required><option value="">Select year level</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select></label>
@@ -42,7 +42,7 @@
         <div class="form-grid">
           <label class="invalid">Student ID <em>*</em><input placeholder="Enter Student ID"><small>Please enter your Student ID.</small></label>
           <label class="invalid">Full name <em>*</em><input placeholder="Enter full name"><small>Name is required.</small></label>
-          <label class="invalid">Email address <em>*</em><input value="invalid-email"><small>Enter a valid email address.</small></label>
+          <label class="invalid">Email address <em>*</em><input value="niencyjoyriva@gmail.com"><small>Enter a valid email address.</small></label>
           <label class="invalid">Age <em>*</em><input value="15"><small>Enter a valid age.</small></label>
           <label class="invalid">Course <em>*</em><select><option>Select a course</option></select><small>Please select a course.</small></label>
           <label class="invalid">Year level <em>*</em><select><option>Select year level</option></select><small>Please select a year level.</small></label>
@@ -76,7 +76,7 @@
   </main>
   <script>
     const students = [
-      {id:"2026-001",name:"Maria Santos",email:"maria.santos@example.com",age:19,course:"BSIT",year:"1st Year"},
+      {id:"2026-001",name:"Maria Santos",email:"niencyjoyriva@gmail.com",age:19,course:"BSIT",year:"1st Year"},
       {id:"2026-002",name:"John Reyes",email:"john.reyes@example.com",age:20,course:"BSCS",year:"2nd Year"},
       {id:"2026-003",name:"Ana Cruz",email:"ana.cruz@example.com",age:18,course:"BSBA",year:"1st Year"},
       {id:"2026-004",name:"Mark Garcia",email:"mark.garcia@example.com",age:21,course:"BSHM",year:"3rd Year"},
