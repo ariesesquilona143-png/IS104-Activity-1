@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student Enrollment System - IS104 Activity 1">
+  <title>Student Enrollment System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Student Portal home"><span class="brand-mark">S</span><span><strong>STUDENT PORTAL</strong><small>ENROLLMENT MANAGEMENT SYSTEM</small></span></a>
+    <span class="top-tag">IS104 · ACTIVITY 1</span>
+  </header>
+
+  <main class="container">
+    <nav class="tabs" aria-label="Enrollment screens">
+      <button class="tab active" data-screen="enroll">01 · Enrollment Form</button>
+      <button class="tab" data-screen="errors">02 · Form Errors</button>
+      <button class="tab" data-screen="records">03 · Student Records</button>
+      <button class="tab" data-screen="summary">04 · Summary Report</button>
+    </nav>
+
+    <section class="screen active" id="enroll">
+      <div class="page-heading"><p class="eyebrow">NEW ENROLLMENT</p><h1>Student Enrollment</h1><p>Complete the student details below to create a new enrollment record.</p></div>
+      <form class="panel form-grid" id="enrollment-form" novalidate>
+        <div class="panel-heading"><h2>Student information</h2><p>Fields marked with an asterisk are required.</p></div>
+        <label>Student ID <em>*</em><input name="studentId" placeholder="e.g. 2026-006" required></label>
+        <label>Full name <em>*</em><input name="fullName" placeholder="Enter student's full name" required></label>
+        <label>Email address <em>*</em><input name="email" type="email" placeholder="student@example.com" required></label>
+        <label>Age <em>*</em><input name="age" type="number" min="16" max="100" placeholder="Enter age" required></label>
+        <label>Course <em>*</em><select name="course" required><option value="">Select a course</option><option>BSIT</option><option>BSCS</option><option>BSBA</option><option>BSHM</option></select></label>
+        <label>Year level <em>*</em><select name="yearLevel" required><option value="">Select year level</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select></label>
+        <div class="form-actions"><button class="button button-light" type="reset">Clear form</button><button class="button" type="submit">Submit enrollment</button></div>
+        <p class="form-note" id="form-message" role="status">By submitting, you confirm that the information provided is accurate.</p>
+      </form>
+    </section>
+
+    <section class="screen" id="errors">
+      <div class="page-heading"><p class="eyebrow">VALIDATION</p><h1>Review your enrollment details</h1><p>Example validation state showing required fields and an invalid email address.</p></div>
+      <div class="panel error-panel"><div class="panel-heading"><h2 class="error-title">Please correct the highlighted fields</h2><p>Some information is missing or incorrectly formatted.</p></div>
+        <div class="form-grid">
+          <label class="invalid">Student ID <em>*</em><input placeholder="Enter Student ID"><small>Please enter your Student ID.</small></label>
+          <label class="invalid">Full name <em>*</em><input placeholder="Enter full name"><small>Name is required.</small></label>
+          <label class="invalid">Email address <em>*</em><input value="invalid-email"><small>Enter a valid email address.</small></label>
+          <label class="invalid">Age <em>*</em><input value="15"><small>Enter a valid age.</small></label>
+          <label class="invalid">Course <em>*</em><select><option>Select a course</option></select><small>Please select a course.</small></label>
+          <label class="invalid">Year level <em>*</em><select><option>Select year level</option></select><small>Please select a year level.</small></label>
+        </div>
+        <div class="form-actions"><span class="issue-count">6 ISSUES TO FIX</span><button class="button button-light" data-go="enroll">Back to blank form</button><button class="button" data-go="records">View student records</button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="records">
+      <div class="page-heading"><p class="eyebrow">STUDENT RECORDS</p><h1>Student Records</h1><p>Browse the current student list and review enrollment details.</p></div>
+      <div class="panel records-panel"><div class="records-heading"><div><h2>All students</h2><p id="record-count">5 records</p></div><span class="count-pill" id="count-pill">5 RECORDS</span></div>
+        <div class="toolbar"><input id="search" type="search" placeholder="Search by name, ID, or email" aria-label="Search students"><button class="button" data-go="enroll">+ Add student</button></div>
+        <div class="table-wrap"><table><thead><tr><th>STUDENT ID</th><th>FULL NAME</th><th>EMAIL ADDRESS</th><th>AGE</th><th>COURSE</th><th>YEAR LEVEL</th><th>STATUS</th></tr></thead><tbody id="student-rows"></tbody></table></div>
+        <div class="table-footer"><span id="showing">Showing 1–5 of 5 students</span><button class="button" data-go="summary">View summary report</button></div>
+      </div>
+    </section>
+
+    <section class="screen" id="summary">
+      <div class="page-heading"><p class="eyebrow">SUMMARY REPORT</p><h1>Enrollment Summary Report</h1><p>A snapshot of student enrollment for the current sample dataset.</p></div>
+      <div class="stats-grid">
+        <article class="stat-card blue"><span>TOTAL STUDENTS</span><strong id="total-students">05</strong><small>Registered records</small></article>
+        <article class="stat-card green"><span>COURSES OFFERED</span><strong id="total-courses">04</strong><small>Unique programs</small></article>
+        <article class="stat-card orange"><span>FIRST YEAR</span><strong id="first-year">02</strong><small>Students in first year</small></article>
+        <article class="stat-card purple"><span>BSIT STUDENTS</span><strong id="bsit-count">02</strong><small>Students enrolled in BSIT</small></article>
+      </div>
+      <div class="report-grid"><article class="panel chart-panel"><h2>Students by course</h2><p>Distribution across the four programs</p><div id="course-bars"></div></article>
+        <article class="panel chart-panel"><h2>Year-level breakdown</h2><p>Students grouped by current year level</p><div id="year-bars"></div></article></div>
+      <p class="report-note">Sample data only · Generated for the Student Enrollment System design exercise.</p>
+    </section>
+    <footer>Student Enrollment System <span>·</span> IS104 Activity 1</footer>
+  </main>
+  <script>
+    const students = [
+      {id:"2026-001",name:"Maria Santos",email:"maria.santos@example.com",age:19,course:"BSIT",year:"1st Year"},
+      {id:"2026-002",name:"John Reyes",email:"john.reyes@example.com",age:20,course:"BSCS",year:"2nd Year"},
+      {id:"2026-003",name:"Ana Cruz",email:"ana.cruz@example.com",age:18,course:"BSBA",year:"1st Year"},
+      {id:"2026-004",name:"Mark Garcia",email:"mark.garcia@example.com",age:21,course:"BSHM",year:"3rd Year"},
+      {id:"2026-005",name:"Lea Dela Cruz",email:"lea.delacruz@example.com",age:20,course:"BSIT",year:"2nd Year"}
+    ];
+    const screens = [...document.querySelectorAll(".screen")];
+    function showScreen(id) {
+      screens.forEach(s => s.classList.toggle("active", s.id === id));
+      document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.screen === id));
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+    document.querySelectorAll("[data-screen]").forEach(b => b.addEventListener("click", () => showScreen(b.dataset.screen)));
+    document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => showScreen(b.dataset.go)));
+    function renderTable(list = students) {
+      const tbody = document.getElementById("student-rows");
+      tbody.innerHTML = "";
+      list.forEach(s => {
+        const tr = document.createElement("tr");
+        [s.id,s.name,s.email,s.age,s.course,s.year].forEach(v => { const td=document.createElement("td");td.textContent=v;tr.appendChild(td); });
+        const status=document.createElement("td");status.innerHTML='<span class="status">Enrolled</span>';tr.appendChild(status);tbody.appendChild(tr);
+      });
+      document.getElementById("record-count").textContent = list.length + (list.length===1?" record":" records");
+      document.getElementById("count-pill").textContent = list.length + " RECORDS";
+      document.getElementById("showing").textContent = list.length ? "Showing 1–"+list.length+" of "+list.length+" students" : "No matching students";
+    }
+    document.getElementById("search").addEventListener("input", e => {
+      const q=e.target.value.toLowerCase();
+      renderTable(students.filter(s => Object.values(s).some(v => String(v).toLowerCase().includes(q))));
+    });
+    function renderSummary() {
+      const count=students.length;
+      document.getElementById("total-students").textContent=String(count).padStart(2,"0");
+      document.getElementById("total-courses").textContent=String(new Set(students.map(s=>s.course)).size).padStart(2,"0");
+      document.getElementById("first-year").textContent=String(students.filter(s=>s.year==="1st Year").length).padStart(2,"0");
+      document.getElementById("bsit-count").textContent=String(students.filter(s=>s.course==="BSIT").length).padStart(2,"0");
+      const courses=["BSIT","BSCS","BSBA","BSHM"];
+      document.getElementById("course-bars").innerHTML=courses.map((c,i)=>{const n=students.filter(s=>s.course===c).length;return '<div class="bar-row"><b>'+c+'</b><div class="bar-track"><span class="bar-fill color-'+i+'" style="width:'+(count?n/count*100:0)+'%"></span></div><strong>'+n+'</strong></div>';}).join("");
+      const years=["1st Year","2nd Year","3rd Year","4th Year"];
+      document.getElementById("year-bars").innerHTML=years.map(y=>{const n=students.filter(s=>s.year===y).length;return '<div class="bar-row"><b>'+y+'</b><div class="bar-track"><span class="bar-fill" style="width:'+(count?n/count*100:0)+'%"></span></div><strong>'+n+'</strong></div>';}).join("");
+    }
+    document.getElementById("enrollment-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const form=e.currentTarget, data=Object.fromEntries(new FormData(form).entries());
+      const message=document.getElementById("form-message");
+      if(!form.reportValidity()){message.textContent="Please complete all required fields with valid information.";message.classList.add("message-error");showScreen("errors");return;}
+      if(students.some(s=>s.id===data.studentId)){message.textContent="That Student ID already exists. Please use a unique ID.";message.classList.add("message-error");return;}
+      students.push({id:data.studentId,name:data.fullName,email:data.email,age:Number(data.age),course:data.course,year:data.yearLevel});
+      form.reset();message.textContent="Enrollment added successfully.";message.classList.remove("message-error");
+      renderTable();renderSummary();showScreen("records");
+    });
+    renderTable();renderSummary();
+  </script>
+</body>
+</html>
